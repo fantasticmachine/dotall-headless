@@ -182,5 +182,3 @@ We have hooked the site up to our Paypal Sandbox account so to checkout using Pa
 There is a test discount code already set up. 
 
 Use code **GIVEME10** for a sweet 10% off an imaginary product in the imaginary store! Thank us later.
-
---END
