@@ -83,11 +83,29 @@ run the following command :
 # Add the site to your own repository
 For the next steps we are going to be deploying the site to The Cloud using Vercel. In order to do this, you will need to host the code in your own repository using GitHub, GitLab, or Bitbucket.
 
+We recommend using GitHub as it's just going to make things simpler to explain!
 
-## Changing the origin
-Fire up a terminal and navigate to the root directory of the project. Type the following;
+### Importing with GitHub
+If you have a GitHub account you can simply import the project into a new repo.
 
+1. Log in to your GitHub account and go to your Repositories tab.
+2. Click "New", give the repository a name, and click "Create"
+3. On the next screen click the "Import Code" button and enter the url https://github.com/FosterCommerce/dot-all-2022.git. It may take a few minutes to import the code.
+4. Once that is done, you can check the repository out to your local machine as normal
+
+
+### Cloning the repository
+
+1. **Clone the project** to your local machine with
+- `git clone git@github.com:FosterCommerce/dot-all-2022.git`
+- or; `git clone https://github.com/FosterCommerce/dot-all-2022.git`
+- or; download the project as a .zip file from https://github.com/FosterCommerce/dot-all-2022/archive/refs/heads/develop.zip
+
+2. **Change the origin**
+To make this your own, fire up a terminal and navigate to the root directory of the project. Type the following; 
 `git remote set-url <url of your repo>`
+
+3. You'll then need to push the code up to your own repo ready for deployment with Vercel
 
 ---
 
@@ -101,26 +119,47 @@ According to a quick Google search&hellip;
 
 Basically, it's a quick and easy way to get a site up and running in the cloud for showing to your friends, family, and clients.
 
-We are going to use Vercel to get your new Headless Commerce site online.
+We are going to use Vercel to get your new Headless Commerce site online. The Front-end of the site will be hosted on your own Vercel account and the Back-end, Craft installation, and database, will be on Foster Commerce's Forge server. Everyone will share the same Back-end.
 
 ### Create a Vercel account
 
 _If you already have a Vercel account then you can skip this part._
 
-Vercel offers a free tier which will be great for what we are doing.
+Vercel offers a free "Hobby" tier which will be great for what we are doing.
 
 First off, head over to https://vercel.com/signup
 
-Vercel will be pulling code from your repository. It works with GitHub, GitLab, and Bitbucket. So sign in using one of those options or alternatively, sign up using an email address.
+Vercel will be pulling code from your repository. It works with GitHub, GitLab, and Bitbucket. So sign in using one of those options or alternatively, sign up using an email address. We recommend using GitHub.
 
-For our purposes, we are going to assume you already have an account with one of the providers listed and have logged in using that.
+For our purposes, we are going to assume you have logged in using GitHub. If you haven't then please head into your Vercel settings and add GitHub as a Repository provider.
 
-You should now see a list of your repositories and you can select the project to deploy to Vercel.
+1. You should now see a list of your repositories and you can select the project to import into Vercel. Choose your DotAll repo and click "Import".
 
-Vercel is only hosting the Front-end of the site, the pages that your users will interact with. The Back-end, the Craft installation itself and the database, is running on Foster Commerce's server hosted on Forge.
+2. Give your Vercel project a name (or just keep the default)
 
+3. The Framework Preset should be Nuxt.js
+
+4. Root directory should be ./
+
+5. Open the Build and Output Settings
+
+6. Flick the Override switch for the Build Command and set it to `yarn run build`
+
+7. Flick the Override switch for the Output Directory and set it to `.nuxt`
+
+8. Open the Environment Variables tab and the following
+
+   - CRAFT_BASE_URL = https://dot-all-2022.fosterstaging.com
+   - CRAFT_ENVIRONMENT = staging (or production is fine too)
+   - ASSET_BASE_URL = https://dot-all-2022.fosterstaging.com/assets
+   - STRIPE_PUB_KEY = pk_test_51LlDeCIQuBaBLwXUlhgSLcxeO57AtPojwBAKcK32OiXmNLkJ75zbFfAqQRBOzcryuHXt8CPhXWcsca6tha7JpM5Z00FEZRVfNm
+   -  STRIPE_SECRET_KEY = sk_test_51LlDeCIQuBaBLwXUob6773EXG9IYxrHtYohdTnjLGPsBWU1kRMXN7BaCVsTIVtRYWzgkRzm5slB3ksIJhqm7SRaL00KG1q9VBe
+
+9. Then click "Deploy"
 
 # Testing the site
+
+Access the Front-end of the site with your own Vercel App url
 
 If you have used the example .env file then you will already be hooked up to our test Stripe and Paypal accounts. Feel free to change the keys to use your own test accounts.
 ## Checking out with Stripe
@@ -138,4 +177,9 @@ We have hooked the site up to our Paypal Sandbox account so to checkout using Pa
 - Paypal test card number: 4111111111111111
 - Expiry: any future date
 - CVV: 123
+
+## Discount codes
+There is a test discount code already set up. 
+
+Use code **GIVEME10** for a sweet 10% off an imaginary product in the imaginary store! Thank us later.
 
